@@ -1,19 +1,19 @@
 import React from "react";
 import { Box, useTheme } from "@mui/material";
-import { DataGrid } from "@mui/x-data-grid";
-import { columns } from "./columns";
-import { mockDataTeam } from "../../data/mockData";
+import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+import { columns } from "../contacts/columns";
+import { mockDataContacts } from "../../data/mockData";
 import { tokens } from "../../theme";
 
 import Header from "../../components/Header";
 
-const Team = () => {
+const Contacts = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
 
   return (
     <Box m="20px">
-      <Header title="TEAM" subtitle="Managing the Team Members" />
+      <Header title="CONTACTS" subtitle="List of Contacts" />
       <Box
         m="40px 0 0 0"
         height="75vh"
@@ -38,12 +38,22 @@ const Team = () => {
             borderTop: "none",
             backgroundColor: colors.blueAccent[700],
           },
+          "& .MuiCheckbox-root": {
+            color: `${colors.greenAccent[200]} !important`,
+          },
+          "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
+            color: `${colors.grey[100]} !important`,
+          },
         }}
       >
-        <DataGrid rows={mockDataTeam} columns={columns} />
+        <DataGrid
+          rows={mockDataContacts}
+          columns={columns}
+          components={{ Toolbar: GridToolbar }}
+        />
       </Box>
     </Box>
   );
 };
 
-export default Team;
+export default Contacts;
